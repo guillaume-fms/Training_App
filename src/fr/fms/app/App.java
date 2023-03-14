@@ -2,9 +2,10 @@ package fr.fms.app;
 
 import java.util.Scanner;
 
-
+import fr.fms.entities.Training;
 
 public class App {
+
 	private static Scanner scan = new Scanner(System.in); 
 
 
@@ -13,43 +14,126 @@ public class App {
 	public static final String TEXT_RED = "\033[0;31m";
 	public static final String TEXT_GREEN = "\033[0;32m"; ;
 
+	
+
 	private static final String COLUMN_ID = "IDENTIFIANT";
 	private static final String COLUMN_TRAINING_NAME = "NOM FORMATION";
 	private static final String COLUMN_DESCRIPTION = "DESCRIPTION";
 	private static final String COLUMN_DURATION_TRAINING = "DUREE FORMATION";
 	private static final String COLUMN_PRICE = "PRIX";
-	private static final String COLUMN_PRESENTIAL_OR_REMOTE = "PRESENTIEL ou DISTANCIEL";  
+	private static final String COLUMN_PRESENTIAL_OR_REMOTE = "PRESENTIEL ou DISTANCIEL"; 
+
+	private static int idUser = 0;
+	private static String login = null; 
+
 	public static void main(String[] args) {
-
-
-		/**
-		 * Méthode qui affiche le menu principal
-		 */
-
-		System.out.println("Bonjour et bienvenue dans ma boutique de formations, voici la liste des formations.\n");
+		System.out.println("Bonjour et bienvenue dans ma e-boutique formations, voici la liste des formations disponibles\n");
 		System.out.println();
-		String input = "-1";
-		while (!input.equals("5")) {		
-			System.out.println("Faites votre choix dans le menu, saisissez le chiffre correspondant :");
-			System.out.println();
-			System.out.println(TEXT_GREEN + "1) : Ajouter une formation à votre panier");
-			System.out.println(TEXT_GREEN + "2) : Supprimer une formation à votre panier");
-			System.out.println(TEXT_GREEN + "3) : Afficher mon panier des formations + total pour passer commande");
-			System.out.println(TEXT_GREEN + "4) : Afficher toutes les formations qui sont disponibles");
-			System.out.println(TEXT_GREEN + "5) : Afficher toutes les catégories de formations en base");
-			System.out.println(TEXT_GREEN + "6) : Afficher toutes les formations d'une catégorie spécifiée");
-			System.out.println(TEXT_GREEN + "7) : Connexion ou Deconnexion à votre compte");
-			System.out.println(TEXT_RED + "8) : Quitter l'application");	
-			input = scan.next();		
-			while (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("4") && !input.equals("5")
-					&& !input.equals("6") && !input.equals("7") && !input.equals("8")) {
-				System.out.println("Votre saisie ne correspond à aucun des choix disponibles, veuillez réessayer svp !!");
-				input = scan.next();
+		displayTrainings();
+		int choice = 0;
+		while(choice != 8) {
+			displayMenu();
+			choice = scanInt();
+			switch(choice) {
+			case 1 : addTraining();				
+			break;					
+			case 2 : removeTraining();
+			break;					
+			case 3 : displayCart(true);
+			break;					
+			case 4 : displayTrainings();
+			break;						
+			case 5 : displayCategories();
+			break;
+			case 6 : displayTrainingByCategoryId();
+			break;
+			case 7 : connection();
+			break;
+			case 8 : System.out.println("A bientôt dans notre boutique de formations.)");
+			break;					
+			default : System.out.println("Veuillez saisir une valeur entre 1 et 8");
 			}
-			scan.nextLine();
-			System.out.println(" ");
 		}
-	}		
+	}
 
+	private static void displayTrainingByCategoryId() {
+		System.out.println("saisissez l'id de la catégorie concerné");
+		//int id = scanInt();
+		//Category category = business.readOneCategory(id);
+		
+			System.out.printf("              AFFICHAGE PAR CATEGORIE    %n");
+			System.out.printf("                     %-10s               %n");
+			System.out.printf("------------------------------------------------------------%n");
+			System.out.printf("%-15s | %-15s | %-15s | %-15s %n",COLUMN_ID,COLUMN_TRAINING_NAME,COLUMN_DESCRIPTION,COLUMN_DURATION_TRAINING,COLUMN_PRICE,COLUMN_PRESENTIAL_OR_REMOTE);
+			System.out.printf("------------------------------------------------------------%n");
+			
+		
+		
+		
+	
+		
+	}
+
+	private static void connection() {
+		if(login != null) {
+			System.out.println("Souhaitez vous déconnecter ? Oui/Non");
+			String response = scan.next();
+			if(response.equalsIgnoreCase("Oui")) {
+				System.out.println("A bientôt " + login + TEXT_RESET);
+				login = null;
+				idUser = 0;
+			}
+		}
+	
+
+	}
+
+	private static void displayCategories() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void displayCart(boolean b) {
+		
+
+	}
+
+	private static void removeTraining() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void addTraining() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static int scanInt() {
+		while(!scan.hasNextInt()) {
+			System.out.println("saisissez une valeur entière svp");
+			scan.next();
+		}
+		return scan.nextInt();
+	}
+
+	private static void displayMenu() {
+		System.out.println("Faites votre choix dans le menu, saisissez le chiffre correspondant :");
+		System.out.println();
+		System.out.println(TEXT_GREEN + "1) : Ajouter une formation à votre panier");
+		System.out.println(TEXT_GREEN + "2) : Supprimer une formation à votre panier");
+		System.out.println(TEXT_GREEN + "3) : Afficher mon panier des formations + total pour passer commande");
+		System.out.println(TEXT_GREEN + "4) : Afficher toutes les formations qui sont disponibles");
+		System.out.println(TEXT_GREEN + "5) : Afficher toutes les catégories de formations en base");
+		System.out.println(TEXT_GREEN + "6) : Afficher toutes les formations d'une catégorie spécifiée");
+		System.out.println(TEXT_GREEN + "7) : Connexion ou Deconnexion à votre compte");
+		System.out.println(TEXT_RED + "8) : Quitter l'application");
+		System.out.println();
+
+	}
+
+	private static void displayTrainings() {
+		System.out.println(Training.centerString(COLUMN_ID) + Training.centerString(COLUMN_TRAINING_NAME) + Training.centerString(COLUMN_DESCRIPTION) + Training.centerString(COLUMN_DURATION_TRAINING)
+		+ Training.centerString(COLUMN_PRICE) + Training.centerString(COLUMN_PRESENTIAL_OR_REMOTE));	
+
+	}
 }
-

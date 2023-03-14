@@ -7,7 +7,7 @@ import java.util.Properties;
 
 /**
  * programme permettant de regénérer le fichier de configuration
- * @author GuillaumePastor 
+ *  
  * 
  */
 

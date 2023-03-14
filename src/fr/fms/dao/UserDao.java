@@ -32,7 +32,7 @@ public class UserDao implements Dao<User> {
 			if(rs.next()) 
 				return new User(rs.getInt(1) , rs.getString(2) , rs.getString(3));
 		} catch (SQLException e) {
-			logger.severe("pb sql sur la lecture d'un user " + e.getMessage());
+			logger.severe("pb sql sur la lecture d'un utilisateur " + e.getMessage());
 		} 	
 		return null;
 
@@ -55,7 +55,7 @@ public class UserDao implements Dao<User> {
 	@Override
 	public boolean delete(User obj) {
 		try (Statement statement = connection.createStatement()){
-			String str = "DELETE FROM T_User where IdUser=" + obj.getId() + ";";									
+			String str = "DELETE FROM T_Users where IdUser=" + obj.getId() + ";";									
 			statement.executeUpdate(str);		
 		} catch (SQLException e) {
 			e.printStackTrace();

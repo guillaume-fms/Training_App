@@ -10,11 +10,11 @@ public class Customer {
 	private String email;
 	private String phone;
 	private int idUser;
-
+	private int idCategory;
 
 
 	// Constructor
-	public Customer(int idCustomer, String name, String firstName, String email, String phone, int idUser) {
+	public Customer(int idCustomer, String name, String firstName, String email, String phone, int idUser, int idCategory) {
 		super();
 		this.idCustomer = idCustomer;
 		this.name = name;
@@ -22,19 +22,29 @@ public class Customer {
 		this.email = email;
 		this.phone = phone;
 		this.idUser = idUser;
+		this.idCategory = idCategory;
 	}
 
 
 
-	public Customer(String name, String firstName, String email, String phone, int idUser) {
+	public Customer(String name, String firstName, String email, String phone, int idUser, int idCategory) {
 		super();
 		this.name = name;
 		this.firstName = firstName;
 		this.email = email;
 		this.phone = phone;
 		this.idUser = idUser;
+		this.idCategory = idCategory;
 	}
 
+	public Customer(int idCustomer, String name, String firstName, String email, String phone) {
+		super();
+		this.idCustomer = idCustomer;
+		this.name = name;
+		this.firstName = firstName;
+		this.email = email;
+		this.phone = phone;
+	}
 
 
 
@@ -110,10 +120,24 @@ public class Customer {
 	}
 
 
+	public int getIdCategory() {
+		return idCategory;
+	}
+
+
+
+	public void setIdCategory(int idCategory) {
+		this.idCategory = idCategory;
+	}
+
+
+
+
+
 	// Methode toString()
 	@Override
 	public String toString() {
 		return "Customer [idCustomer=" + idCustomer + ", name=" + name + ", firstName=" + firstName + ", email=" + email
-				+ ", phone=" + phone + ", idUser=" + idUser + "]";
+				+ ", phone=" + phone + ", idUser=" + idUser + ", idCategory=" + idCategory + "]";
 	}
 }

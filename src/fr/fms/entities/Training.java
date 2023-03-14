@@ -11,6 +11,8 @@ public class Training {
 	private String presentialorRemote;
 
 
+	public static final int MAX_STRING_LENGTH = 20;
+	
 	// Constructor
 
 	public Training(int id, String trainingName, String description, int durationTraining, double price,
@@ -91,6 +93,15 @@ public class Training {
 		return "Training [idTraining=" + id + ", trainingName=" + trainingName + ", description=" + description
 				+ ", durationTraining=" + durationTraining + ", price=" + price + ", presentialorRemote="
 				+ presentialorRemote + "]";
+	}
+
+	public static String centerString(String str) {
+		if(str.length() >= MAX_STRING_LENGTH) return str;
+		String dest = "                    ";
+		int deb = (MAX_STRING_LENGTH - str.length())/2 ;
+		String data = new StringBuilder(dest).replace( deb, deb + str.length(), str ).toString();
+		return data;
+	
 	}
 
 

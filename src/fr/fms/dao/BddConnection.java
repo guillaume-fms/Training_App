@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * Gestion de la connexion à la base à partir des données dans le fichier config.properties
  * Afin d'assurer qu'une seule connexion est établie pour tous les composants d'accès aux données,
  * nous avons utilisé ici un Singleton à l'aide du constructeur privé
- * @author GuillaumePastor 
+ * 
  */
 
 
