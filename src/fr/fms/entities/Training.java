@@ -3,44 +3,44 @@ package fr.fms.entities;
 public class Training {
 
 	// Attributs	
-	private int idTraining; 
+	private int id; 
 	private String trainingName;
 	private String description;
 	private int durationTraining;
 	private  double price;
-	private boolean presentialorremote;
+	private String presentialorRemote;
 
 
 	// Constructor
 
-	public Training(int idTraining, String trainingName, String description, int durationTraining, double price,
-			boolean presentialorremote) {
+	public Training(int id, String trainingName, String description, int durationTraining, double price,
+			String presentialorRemote) {
 		super();
-		this.idTraining = idTraining;
+		this.id = id;
 		this.trainingName = trainingName;
 		this.description = description;
 		this.durationTraining = durationTraining;
 		this.price = price;
-		this.presentialorremote = presentialorremote;
+		this.presentialorRemote = presentialorRemote;
 	}
 
 	public Training(String trainingName, String description, int durationTraining, double price,
-			boolean presentialorremote) {
+			String presentialorRemote) {
 		super();
 		this.trainingName = trainingName;
 		this.description = description;
 		this.durationTraining = durationTraining;
 		this.price = price;
-		this.presentialorremote = presentialorremote;
+		this.presentialorRemote = presentialorRemote;
 	}
 
 	// Getters Setters
-	public int getIdTraining() {
-		return idTraining;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdTraining(int idTraining) {
-		this.idTraining = idTraining;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTrainingName() {
@@ -75,12 +75,12 @@ public class Training {
 		this.price = price;
 	}
 
-	public boolean isPresentialorremote() {
-		return presentialorremote;
+	public String isPresentialorRemote() {
+		return presentialorRemote;
 	}
 
-	public void setPresentialorremote(boolean presentialorremote) {
-		this.presentialorremote = presentialorremote;
+	public void setPresentialorremote(String presentialorRemote) {
+		this.presentialorRemote = presentialorRemote;
 	}
 
 
@@ -88,9 +88,9 @@ public class Training {
 
 	@Override
 	public String toString() {
-		return "Training [idTraining=" + idTraining + ", trainingName=" + trainingName + ", description=" + description
-				+ ", durationTraining=" + durationTraining + ", price=" + price + ", presentialorremote="
-				+ presentialorremote + "]";
+		return "Training [idTraining=" + id + ", trainingName=" + trainingName + ", description=" + description
+				+ ", durationTraining=" + durationTraining + ", price=" + price + ", presentialorRemote="
+				+ presentialorRemote + "]";
 	}
 
 

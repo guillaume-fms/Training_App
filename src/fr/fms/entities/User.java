@@ -2,15 +2,15 @@ package fr.fms.entities;
 
 public class User {
 
-	
- //Attributs
+
+	//Attributs
 	private int id;
 	private String login;
 	private String pwd;
-	
-	
-	
-// Constructor	
+
+
+
+	// Constructor	
 	public User(int id, String login, String pwd) {
 		super();
 		this.id = id;
@@ -22,11 +22,11 @@ public class User {
 		this.login = login;
 		this.pwd = pwd;
 	}
-	
-	
-	
-// Getters Setters 	
-	
+
+
+
+	// Getters Setters 	
+
 	public int getId() {
 		return id;
 	}
@@ -45,10 +45,10 @@ public class User {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	
-	
-	
-// Methode toString()
+
+
+
+	// Methode toString()
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", pwd=" + pwd + "]";

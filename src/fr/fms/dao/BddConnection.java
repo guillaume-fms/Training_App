@@ -9,6 +9,12 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+/**
+ * Gestion de la connexion à la base à partir des données dans le fichier config.properties
+ * Afin d'assurer qu'une seule connexion est établie pour tous les composants d'accès aux données,
+ * nous avons utilisé ici un Singleton à l'aide du constructeur privé
+ * @author GuillaumePastor 
+ */
 
 
 public class BddConnection {
@@ -46,6 +52,7 @@ public class BddConnection {
 	 * méthode qui retourne une connection, si inexistante, il l'a crée une seule fois
 	 * @return Connection
 	 */
+	
 	public static Connection getConnection() {	
 		if(connection == null) 	new BddConnection();
 		return connection;
@@ -58,7 +65,7 @@ public class BddConnection {
 	 */
 	private static void getConfigFile() throws FileNotFoundException, IOException {
 		Properties props = new Properties();		
-		try (FileInputStream fis = new FileInputStream("file/config.properties")){
+		try (FileInputStream fis = new FileInputStream("files/config.properties")){
 			props.load(fis);
 		} catch (FileNotFoundException e1) {
 			logger.severe("Fichier de config non trouvé " + e1.getMessage());

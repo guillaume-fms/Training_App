@@ -3,8 +3,13 @@ package fr.fms.dao;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.logging.Logger;
-
 import fr.fms.entities.Training;
+
+/**
+ * @author GuillaumePastor - 2023
+ * 
+ */
+
 
 public interface Dao <T>{
 
