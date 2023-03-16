@@ -9,12 +9,12 @@ USE Training;
 -- - Construction de la table des formations                               ---
 -- -----------------------------------------------------------------------------
 CREATE TABLE T_Trainings (
-	IdTraining				int(4)			PRIMARY KEY AUTO_INCREMENT,
+	IdTraining			int(4)			PRIMARY KEY AUTO_INCREMENT,
 	trainingName			varchar(100)	NOT NULL,
-	description				varchar(100)	NOT NULL,
-	durationTraining		int (5)			NOT NULL,
-	price 					float(5)		NOT NULL,
-	presentialorremote      varchar(20)		NOT NULL
+	description			varchar(100)	NOT NULL,
+	durationTraining		int (5)		NOT NULL,
+	price 				float(5)	NOT NULL,
+	presentialorremote              varchar(20)	NOT NULL
 ) ENGINE = InnoDB;
 
 INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('Java' , 'Java 8 : Poo et execption', 8, 800 ,'presential' );
