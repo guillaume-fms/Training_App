@@ -1,83 +1,45 @@
 package fr.fms.dao;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Logger;
-
-/**
- * Gestion de la connexion à la base à partir des données dans le fichier config.properties
- * Afin d'assurer qu'une seule connexion est établie pour tous les composants d'accès aux données,
- * nous avons utilisé ici un Singleton à l'aide du constructeur privé
- * 
- */
-
 
 public class BddConnection {
+	
+	
+	public static final String RED_BOLD = "\033[1;31m"; 
+	public static final String GREEN_BOLD = "\033[1;32m"; 
+	
+	public static void main(String[] args) throws ClassNotFoundException  {
+		
+				Properties prop = readPropertiesFile("files/config.properties");
+	            String url,driver,login,password;  
+	            Connection con = null;  
+	            try {  
+	                Class.forName("org.mariadb.jdbc.Driver"); 
+	                driver ="db.driver.class";
+	                url="jdbc:mariadb://localhost:3306/Training";
+	                login = "root";
+	                password = "fms2023" ; 
+	                con = DriverManager.getConnection(url, login, password);  
+	                System.out.println(GREEN_BOLD + "Connection OK");  
+	                con.close();  
+	                System.out.println( RED_BOLD + "Connection terminée");  
+	                System.out.println(login +"\n" + password +"\n" + url +"\n" + driver);
+	                }  
+	                catch (Exception e) {  
+	                System.out.println(e.toString());  
+	            }  
+	    }
 
-	
-	private static Connection connection = null;
-	private static String driver;
-	private static String url;
-	private static String login;
-	private static String password;
-	
-	private static final Logger logger = Logger.getLogger(BddConnection.class.getName());
-	
-	private BddConnection() {
-		try {
-			getConfigFile();								
-			Class.forName(driver);	
-			connection = DriverManager.getConnection(url,login,password);			
-		}			
-		catch (ClassNotFoundException | SQLException e) {
-			logger.severe("connection pb : " + e.getMessage());
-		}
-		catch (FileNotFoundException e) {
-			logger.severe("config.properties not found:" + e.getMessage());
-		} 
-		catch (IOException e) {
-			logger.severe("I/O pb : " + e.getMessage());
-		}
-		catch (Exception e) {
-			logger.severe("pb : " + e.getMessage());
-		}
+	private static Properties readPropertiesFile(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	/**
-	 * méthode qui retourne une connection, si inexistante, il l'a crée une seule fois
-	 * @return Connection
-	 */
-	
-	public static Connection getConnection() {	
-		if(connection == null) 	new BddConnection();
-		return connection;
-	}
-	
-	/**
-	 * méthode qui ouvre le fichier de config d'une connection
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 */
-	private static void getConfigFile() throws FileNotFoundException, IOException {
-		Properties props = new Properties();		
-		try (FileInputStream fis = new FileInputStream("files/config.properties")){
-			props.load(fis);
-		} catch (FileNotFoundException e1) {
-			logger.severe("Fichier de config non trouvé " + e1.getMessage());
-		} catch (IOException e1) {
-			logger.severe("Erreur lecture fichier config " + e1.getMessage());
-		}		
-		driver = props.getProperty("db.driver.class");
-		url = props.getProperty("db.url");
-		login = props.getProperty("db.login");
-		password = props.getProperty("db.password");
+
+	public static Connection getConnection() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
-	
-	
-

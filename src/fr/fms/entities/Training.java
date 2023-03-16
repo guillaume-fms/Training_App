@@ -9,11 +9,29 @@ public class Training {
 	private int durationTraining;
 	private  double price;
 	private String presentialorRemote;
+	private int category;
+	private int quantity=1;
+
 
 
 	public static final int MAX_STRING_LENGTH = 20;
-	
+
 	// Constructor
+
+	public Training(int id, String trainingName, String description, int durationTraining, double price,
+			String presentialorRemote, int category) {
+		super();
+		this.id = id;
+		this.trainingName = trainingName;
+		this.description = description;
+		this.durationTraining = durationTraining;
+		this.price = price;
+		this.presentialorRemote = presentialorRemote;
+		this.category = category;
+
+	}
+
+
 
 	public Training(int id, String trainingName, String description, int durationTraining, double price,
 			String presentialorRemote) {
@@ -90,10 +108,9 @@ public class Training {
 
 	@Override
 	public String toString() {
-		return "Training [idTraining=" + id + ", trainingName=" + trainingName + ", description=" + description
-				+ ", durationTraining=" + durationTraining + ", price=" + price + ", presentialorRemote="
-				+ presentialorRemote + "]";
-	}
+		return centerString(String.valueOf(id)) + centerString(trainingName) + centerString(description) + centerString(String.valueOf(durationTraining) + centerString(String.valueOf(price)
+				+ centerString(presentialorRemote)));
+	}	
 
 	public static String centerString(String str) {
 		if(str.length() >= MAX_STRING_LENGTH) return str;
@@ -101,7 +118,27 @@ public class Training {
 		int deb = (MAX_STRING_LENGTH - str.length())/2 ;
 		String data = new StringBuilder(dest).replace( deb, deb + str.length(), str ).toString();
 		return data;
-	
+
+	}
+
+	public int getQuantity() {
+
+		return 0 ;
+	}
+
+	public void setQuantity(int i) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public int getCategory() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getPresentialorRemote() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

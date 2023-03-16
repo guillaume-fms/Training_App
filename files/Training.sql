@@ -21,8 +21,8 @@ INSERT INTO T_Trainings (trainingName, description, durationTraining, price, pre
 INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('Angular' , 'Angular 14 : Observables et bdd', 5, 1800.5,'remote' );
 INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('JavaJEE' , 'Java JEE : Servlet et JPA', 3, 500,'presential' );
 INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('HTML/CSS' , 'HTML5 : Introduction', 4, 600.45,'remote' );
-INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('C++' , 'C++ : Poo', 4, 655.45,'remote' );
-INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('Php' , 'CMS : Prestashop', 3, 555.45,'presential' );
+INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('C++' , 'C++ : Poo', 4, 655,'remote' );
+INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('Php' , 'CMS : Prestashop', 3, 555,'presential' );
 INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('Pack Office' , 'Word,Excel', 4, 1555.45,'remote' );
 INSERT INTO T_Trainings (trainingName, description, durationTraining, price, presentialorremote) VALUES ('Python' , 'Data Scientist', 2, 955.45,'remote' );
 
@@ -99,5 +99,47 @@ ALTER TABLE T_Trainings ADD FOREIGN KEY(IdCategory) REFERENCES T_Categories(IdCa
 
 SELECT * FROM T_Categories;
 
+
+-- -----------------------------------------------------------------------------
+-- - Construction de la table des commandes
+-- -----------------------------------------------------------------------------
+CREATE TABLE T_Orders (
+	IdOrder				int(4)		PRIMARY KEY AUTO_INCREMENT,
+	Amount				float(4)	NOT NULL DEFAULT 0,
+	DateOrder 			DATE		NOT NULL DEFAULT NOW(),
+	IdCustomer          INT(4)   	NOT NULL,
+	FOREIGN KEY(IdCustomer) REFERENCES T_Customers(IdCustomer)
+) ENGINE = InnoDB;
+
+
+SELECT * FROM T_Orders;
+
+-- -----------------------------------------------------------------------------
+-- - Construction de la table des commandes de formations
+-- -----------------------------------------------------------------------------
+CREATE TABLE T_Order_Trainings (
+	IdOrderItem			int(4)	PRIMARY KEY AUTO_INCREMENT,
+	IdTraining          INT(4)   NOT NULL,
+	FOREIGN KEY(IdTraining) REFERENCES T_Trainings(IdTraining),
+	Quantity			FLOAT(4) NOT NULL DEFAULT 1,
+	UnitaryPrice		FLOAT(4)	NOT NULL DEFAULT 0,
+	IdOrder             INT(4)   NOT NULL,
+	FOREIGN KEY(IdOrder) REFERENCES T_Orders(IdOrder)
+) ENGINE = InnoDB;
+
+
+
+
+-- -----------------------------------------------------------------------------
+-- - Un utilisateur avec des droits restreint à une base de données
+-- -----------------------------------------------------------------------------
+
+CREATE USER 'guillaume'@'localhost' IDENTIFIED BY'Guiom*31';
+GRANT ALL PRIVILEGES ON BDTraining.*TO'guillaume'@'localhost';
+FLUSH PRIVILEGES;
+mysql -u guillaume -p      password : 
+show databases;    						 
+show GRANTS FOR ‘guillaume'@'localhost’;  
+-- Drop user ‘guillaume'@'localhost’ ->	effacer un utilisateur
 
 
